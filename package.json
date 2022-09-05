@@ -11,6 +11,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "electron": "^20.1.1",
+    "electron-builder": "^23.3.3",
+    "electron-updater": "^5.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -19,9 +21,12 @@
   "scripts": {
     "start-electron": "electron .",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-react": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder --mac --windows --linux",
+    "release": "electron-builder --mac --windows --linux --publish always"
   },
   "eslintConfig": {
     "extends": [

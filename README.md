@@ -1,3 +1,9 @@
+
+[![CircleCI Build Status](https://circleci.com/gh/pandurx/password-manager.svg?style=shield)](https://circleci.com/gh/pandurx/password-manager)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/4lggi9dpjc1qob7k/branch/main?svg=true)](https://ci.appveyor.com/api/projects/status/pandurx/password-manager)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
