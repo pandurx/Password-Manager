@@ -53,13 +53,12 @@
     ]
   },
   "build": {
-    "appId": "org.breta.MemoryKing",
+    "appId": "org.pandurx.password-manager",
     "category": "public.app-category.education",
     "files": [
       "routes/",
       "node_modules/",
-
-      "main.js",
+      "index.js",
       "index.html",
       "package.json"
     ],
