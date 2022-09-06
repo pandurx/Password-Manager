@@ -10,11 +10,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "electron": "^20.1.1",
     "electron-builder": "^23.3.3",
     "electron-updater": "^5.2.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -26,7 +31,8 @@
     "eject": "react-scripts eject",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --mac --windows --linux",
-    "release": "electron-builder --mac --windows --linux --publish always"
+    "release": "electron-builder --mac --windows --linux --publish always",
+    "dist": "npm run build && build --publish onTagOrDraft"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +51,43 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "build": {
+    "appId": "org.breta.MemoryKing",
+    "category": "public.app-category.education",
+    "files": [
+      "routes/",
+      "node_modules/",
+
+      "main.js",
+      "index.html",
+      "package.json"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  },
+  "directories": {
+    "output": "release"
   }
 }
