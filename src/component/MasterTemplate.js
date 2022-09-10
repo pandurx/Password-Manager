@@ -4,14 +4,33 @@ import Box from '@mui/material/Box';
 import MiniDrawer from './Menu';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import Table from './Table';
+import { getInvoices } from '../data';
+import { useLocation } from "react-router-dom";
 
 class MasterTemplate extends React.Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            context: null
+        }
+
+    }
+
+
+
     getTitle() {
         return "Password Manager"
     }
 
     render() {
+        const handleContextChange = contex => {
+            console.log('handle?', contex)
+            console.log('state', this.state)
+            //this.state.context = contex
+            this.setState({context:contex})
+        }
+
         const DrawerHeader = styled('div')(({ theme }) => ({
             display: 'flex',
             alignItems: 'center',
@@ -28,9 +47,12 @@ class MasterTemplate extends React.Component {
             username: "john.doe@gmail.com"
         };
         let menus = [
-            {link:"/invoices", text: "invoices"},
-            {link:"/expenses", text: "expenses"}
-        ]
+            {link:"/socials", text: "social"},
+            {link:"/emails", text: "email"}
+        ];
+
+
+        let socials = getInvoices();
         return (
             
 
@@ -39,10 +61,13 @@ class MasterTemplate extends React.Component {
                     title={title}
                     user={user}
                     menus={menus}
+                    handleContextChange={handleContextChange}
                 />
                
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
+                    
+                    <Table title={this.state.context} items={socials}></Table>
                     
                     <Typography paragraph>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -72,7 +97,7 @@ class MasterTemplate extends React.Component {
                         posuere sollicitudin aliquam ultrices sagittis orci a.
                     </Typography>
 
-                    <Outlet/>
+                    {/* <Outlet/> */}
                    
                 </Box>
             </Box>

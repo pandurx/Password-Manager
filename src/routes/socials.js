@@ -13,7 +13,7 @@ function QueryNavLink({ to, ...props }) {
   return <NavLink to={to + location.search} {...props} />;
 }
 
-export default function Invoices() {
+export default function Socials() {
   let invoices = getInvoices();
   let [searchParams, setSearchParams] = useSearchParams({ replace: true });
 
@@ -48,7 +48,7 @@ export default function Invoices() {
                   color: isActive ? 'red' : '',
                 };
               }}
-              to={`/invoices/${invoice.number}`}
+              to={`/Socials/${invoice.number}`}
             >
               {invoice.name}
             </QueryNavLink>

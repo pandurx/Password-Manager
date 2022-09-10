@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
-import Expenses from './routes/expenses';
-import Invoices from './routes/invoices';
-import Invoice from './routes/invoice';
+import Emails from './routes/emails';
+import Socials from './routes/socials'
+import Social from './routes/social';
 
 import {
   BrowserRouter,
@@ -19,8 +19,8 @@ root.render(
 <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="expenses" element={<Expenses />} />
-        <Route path="invoices" element={<Invoices />}>
+        <Route path="emails" element={<Emails />} />
+        <Route path="socials" element={<Socials />}>
           <Route
             index
             element={
@@ -29,7 +29,7 @@ root.render(
               </main>
             }
           />
-          <Route path=":invoiceId" element={<Invoice />} />
+          <Route path=":socialId" element={<Social />} />
         </Route>
         <Route
           path="*"

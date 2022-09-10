@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Outlet, Link } from 'react-router-dom';
+import { StepContext } from '@mui/material';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -42,7 +43,7 @@ const closedMixin = (theme) => ({
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
+const DrawerHeader = styled("div")(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
@@ -98,6 +99,8 @@ export default function MiniDrawer(props) {
     setOpen(false);
   };
 
+
+
   return (
     
  <React.Fragment>
@@ -123,7 +126,8 @@ export default function MiniDrawer(props) {
       </AppBar>
 
       {/* side bar */}
-      <Drawer variant="permanent" open={open}>
+      <Drawer  variant="permanent" open={open}>
+      
 
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -132,12 +136,12 @@ export default function MiniDrawer(props) {
         </DrawerHeader>
  
         <List>
-        <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
+        <nav>
           {
             props.menus.map(item => (
               <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
                 <Link to={item.link}>
-                <ListItemButton
+                <ListItemButton onClick={event => props.handleContextChange(item.text)}
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
