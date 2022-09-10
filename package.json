@@ -31,9 +31,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --windows --linux",
+    "build": "electron-builder --windows=portable",
     "release": "electron-builder --windows --linux --publish always",
-    "dist": "npm run build && build --publish onTagOrDraft"
+    "dist": "electron-builder --win=portable"
   },
   "eslintConfig": {
     "extends": [
@@ -54,37 +54,22 @@
     ]
   },
   "build": {
+    "extends": null,
     "appId": "org.pandurx.password-manager",
-    
+    "productName": "password-manager",
+    "win": {
+      "target": ["portable"]
+    },
     "files": [
-      "routes/",
-      "node_modules/",
-      "index.js",
-      "index.html",
+      "src/*",
+      "public/main.js",
+      "build/**/*",
+      "node_modules/**/*",
+      "dist/win-unpacked/resources/**",
       "package.json"
     ],
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ]
+    "portable": {
+      "artifactName": "portable.exe"
     }
   },
   "devDependencies": {
