@@ -1,0 +1,30 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - filter:
+      - build/**/*
+      - routes/
+      - node_modules/
+      - index.js
+      - index.html
+      - package.json
+extraMetadata:
+  main: build/electron.js
+appId: org.pandurx.password-manager
+dmg:
+  contents:
+    - x: 130
+      'y': 220
+    - x: 410
+      'y': 220
+      type: link
+      path: /Applications
+win:
+  target: nsis
+linux:
+  target:
+    - AppImage
+    - deb
+extends: react-cra
+electronVersion: 20.1.3
