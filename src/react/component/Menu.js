@@ -27,9 +27,6 @@ import {
   Route,
 } from "react-router-dom";
 
-import Emails from '../routes/emails';
-import Socials from '../routes/socials'
-import Social from '../routes/social';
 
 const drawerWidth = 240;
 
