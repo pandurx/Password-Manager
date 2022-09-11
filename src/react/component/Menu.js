@@ -20,6 +20,17 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Outlet, Link } from 'react-router-dom';
 import { StepContext } from '@mui/material';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import Emails from '../routes/emails';
+import Socials from '../routes/socials'
+import Social from '../routes/social';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -136,7 +147,7 @@ export default function MiniDrawer(props) {
         </DrawerHeader>
  
         <List>
-        <nav>
+        <BrowserRouter>
           {
             props.menus.map(item => (
               <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
@@ -163,7 +174,8 @@ export default function MiniDrawer(props) {
               </ListItem>
             ))
           }
-          </nav>
+
+        </BrowserRouter>
           
         </List>
         

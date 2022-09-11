@@ -20,4 +20,8 @@ install:
 build_script:
   - yarn dist
 
+artifacts:
+  - path: passman.zip
+    name: PassMan
+
 test: off

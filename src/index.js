@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+//import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './react/App';
+import * as serviceWorker from './serviceWorker';
 
 import reportWebVitals from './reportWebVitals';
-import Emails from './routes/emails';
-import Socials from './routes/socials'
-import Social from './routes/social';
+// import Emails from './routes/emails';
+// import Socials from './routes/socials'
+// import Social from './routes/social';
 
 import {
   BrowserRouter,
@@ -15,8 +17,19 @@ import {
 } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log('index.js')
 root.render(
-<BrowserRouter>
+  <App />
+);
+//ReactDOM.render(<App />, document.getElementById('root'));
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+serviceWorker.unregister();
+
+
+/* <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="emails" element={<Emails />} />
@@ -41,10 +54,4 @@ root.render(
         />
       </Route>
     </Routes>
-  </BrowserRouter>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  </BrowserRouter> */

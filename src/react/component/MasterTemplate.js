@@ -8,6 +8,16 @@ import Table from './Table';
 import { getInvoices } from '../data';
 import { useLocation } from "react-router-dom";
 
+import Emails from '../routes/emails';
+import Socials from '../routes/socials'
+import Social from '../routes/social';
+
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+  } from "react-router-dom";
+
 class MasterTemplate extends React.Component {
     constructor(props) {
         super(props);
@@ -16,8 +26,6 @@ class MasterTemplate extends React.Component {
         }
 
     }
-
-
 
     getTitle() {
         return "Password Manager"
@@ -69,6 +77,18 @@ class MasterTemplate extends React.Component {
                     
                     <Table title={this.state.context} items={socials}></Table>
                     
+
+                    <Outlet/>
+
+                    <BrowserRouter>
+                        <Routes>
+                    
+                            <Route path="emails" element={<Emails />} />
+                            <Route path="socials" element={<Socials />} />
+
+                        </Routes>
+                    </BrowserRouter> 
+
                     <Typography paragraph>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -97,8 +117,6 @@ class MasterTemplate extends React.Component {
                         posuere sollicitudin aliquam ultrices sagittis orci a.
                     </Typography>
 
-                    {/* <Outlet/> */}
-                   
                 </Box>
             </Box>
         );
