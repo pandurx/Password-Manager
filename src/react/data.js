@@ -76,8 +76,33 @@
     }
   ];
   
+  let title = "Password Manager";
+  let user = {
+      first: "john",
+      last: "doe",
+      username: "john.doe@gmail.com"
+  };
+  let menus = [
+      {link:"/socials", text: "social"},
+      {link:"/emails", text: "email"}
+  ];
+
+
   export function getInvoices() {
     return invoices;
+  }
+  
+
+  export function getUser() {
+    return user;
+  }
+
+  export function getMenus() {
+    return menus;
+  }
+
+  export function getTitle() {
+    return title;
   }
   
   /**
