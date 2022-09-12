@@ -76,6 +76,45 @@
     }
   ];
   
+  let columns = [
+    { field: 'Title', headerName: 'ID', width: 70 },
+    { field: 'Username', headerName: 'First name', width: 130 },
+    { field: 'Quality', headerName: 'Last name', width: 130 },
+    {
+      field: 'Password',
+      headerName: 'Age',
+      type: 'number',
+      width: 90,
+    }
+    // {
+    //   field: 'Group',
+    //   headerName: 'Full name',
+    //   description: 'This column has a value getter and is not sortable.',
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (params) =>
+    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    // },
+  ];
+
+  let accounts = {
+    data: [
+      { Id: 1, Title: 'Facebook', Username: 'Dummy_Username1', Quality: 'Good', Password: 'Password', Group: 'Internet', Url: 'http://facebook.com' },
+      { Id: 2, Title: 'Google', Username: 'Dummy_Username2', Quality: 'Ok', Password: 'Password', Group: 'Internet', Url: 'http://facebook.com' },
+      { Id: 3, Title: 'Amazon', Username: 'Dummy_Username3', Quality: 'Bad', Password: 'Password', Group: 'Internet', Url: 'http://facebook.com' },
+      { Id: 4, Title: 'Microsoft', Username: 'Dummy_Username4', Quality: 'Good', Password: 'Password', Group: 'Internet', Url: 'http://facebook.com' },
+      { Id: 5, Title: 'GitHub', Username: 'Dummy_Username5', Quality: 'Good', Password: 'Password', Group: 'Internet', Url: 'http://facebook.com' }
+    ],
+    headers: [
+      { field: 'Title', headerName: 'Title', width: 70, align: 'right' },
+      { field: 'Username', headerName: 'Username', width: 130, align: 'right' },
+      { field: 'Quality', headerName: 'Quality', width: 130, align: 'right' },
+      { field: 'Password', headerName: 'Password', width: 90, align: 'right' },
+      { field: 'Group', headerName: 'Group', width: 90, align: 'right' },
+      { field: 'Url', headerName: 'Url', width: 90, align: 'right' }
+    ]
+  }
+
   let title = "Password Manager";
   let user = {
       first: "john",
@@ -92,6 +131,9 @@
     return invoices;
   }
   
+  export function getAccounts() {
+    return accounts;
+  }
 
   export function getUser() {
     return user;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as MuiMaterial from '@mui/material';
+import * as MuiDataGrid from '@mui/x-data-grid';
 import {
     UseLocation,
     BrowserRouter,
@@ -20,20 +21,28 @@ import {
     getInvoices, 
     getMenus, 
     getUser, 
-    getTitle 
+    getTitle, 
+    getAccounts
 } from '../data';
 
 class MasterTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            context: null
+            context: null,
+            account: null
         }
     }
 
+    
+
     render() {
+        
         const handleContextChange = contex => {
             this.setState({context:contex})
+        }
+        const handleAccountSelect = contex => {
+            this.setState({account:contex})
         }
 
         const DrawerHeader = MuiMaterial.styled('div')(({ theme }) => ({
@@ -56,8 +65,14 @@ class MasterTemplate extends React.Component {
                 />
                
                 <MuiMaterial.Card elevation={0}  component="main" sx={{ flexGrow: 1, pt: 3, color: 'primary.main' }}>
-                    <MuiMaterial.CardContent>
-                        <Table title={this.state.context} items={getInvoices()}></Table>
+                    <MuiMaterial.CardContent>        
+                        
+
+                        <Table 
+                            title={this.state.context} 
+                            items={getAccounts()}
+                            handleAccountSelect={handleAccountSelect}
+                        />
 
                         <MuiMaterial.Card sx={{ mt:3, mb: 3, color: 'text.primary', backgroundColor: 'info.main' }}>
                             <MuiMaterial.CardHeader title="Lorem Ipsum" />
@@ -77,6 +92,7 @@ class MasterTemplate extends React.Component {
                             <MuiMaterial.CardHeader title="Lorem Ipsum" />
                             <MuiMaterial.CardContent>
                                 <MuiMaterial.Typography paragraph>
+                                    {this.state.account}
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                     tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
                                     enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
