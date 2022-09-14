@@ -110,7 +110,7 @@
       { field: 'Username', headerName: 'Username', width: 130, align: 'right' },
       { field: 'Quality', headerName: 'Quality', width: 130, align: 'right' },
       { field: 'Password', headerName: 'Password', width: 90, align: 'right' },
-      { field: 'Group', headerName: 'Group', width: 90, align: 'right' },
+      //{ field: 'Group', headerName: 'Group', width: 90, align: 'right' },
       { field: 'Url', headerName: 'Url', width: 90, align: 'right' }
     ]
   }
@@ -122,8 +122,9 @@
       username: "john.doe@gmail.com"
   };
   let menus = [
-      {link:"/socials", text: "social"},
-      {link:"/emails", text: "email"}
+      {link:"/socials", icon: "move_to_inbox", text: "Bulk-A"},
+      {link:"/emails", icon: "sledding", text: "Bulk-B"},
+      {link:"/emails", icon: "surfing", text: "Bulk-C"}
   ];
 
 

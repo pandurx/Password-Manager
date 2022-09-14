@@ -115,7 +115,14 @@ export default function DenseTable(props) {
             { stableSort(items, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => {
                 return(
                   <MuiMaterial.TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    { headers.map(header => {return <MuiMaterial.TableCell onClick={event => props.handleAccountSelect(item.Id)} key={header.field} align="right">{item[header.field]}</MuiMaterial.TableCell>}) }
+                    { 
+                      headers
+                        .map(header => 
+                          {
+                            return <MuiMaterial.TableCell onClick={event => props.handleAccountSelect(item.Id)} key={header.field} align="right">{header.field != "Quality" ? item[header.field] : <MuiMaterial.Rating name="read-only" value={4} readOnly />}</MuiMaterial.TableCell>
+                          }
+                        ) 
+                    }
                   </MuiMaterial.TableRow>
                 );
               })
@@ -136,10 +143,7 @@ export default function DenseTable(props) {
         />
 
     </MuiMaterial.CardContent>
-    <MuiMaterial.CardActions>
-      <MuiMaterial.Button>Save</MuiMaterial.Button>
-      <MuiMaterial.Button>Cancel</MuiMaterial.Button>
-    </MuiMaterial.CardActions>
+
   </MuiMaterial.Card>
   );
 }

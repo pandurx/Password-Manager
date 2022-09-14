@@ -29,8 +29,12 @@ class MasterTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            context: null,
-            account: null
+            context: "Dummy",
+            account: 1,
+            gridPrimary: 12,
+            gridSecondary: 0,
+            accounts: getAccounts(),
+            selectedAccount: {}
         }
     }
 
@@ -41,9 +45,17 @@ class MasterTemplate extends React.Component {
         const handleContextChange = contex => {
             this.setState({context:contex})
         }
+
         const handleAccountSelect = contex => {
-            this.setState({account:contex})
+            if (this.state.account == contex) {
+                this.setState({account:null, gridPrimary:12, gridSecondary:0})
+            } else {
+                this.setState({account:contex, gridPrimary:7, gridSecondary:5})
+            }
+            let item = this.state.accounts.data.find(x => x.Id == this.state.account);
+            this.setState({selectedAccount: item });
         }
+        
 
         const DrawerHeader = MuiMaterial.styled('div')(({ theme }) => ({
             display: 'flex',
@@ -64,17 +76,55 @@ class MasterTemplate extends React.Component {
                     handleContextChange={handleContextChange}
                 />
                
-                <MuiMaterial.Card elevation={0}  component="main" sx={{ flexGrow: 1, pt: 3, color: 'primary.main' }}>
+                <MuiMaterial.Card elevation={0} component="main" sx={{ flexGrow: 1, pt: 3, color: 'primary.main' }}>
                     <MuiMaterial.CardContent>        
                         
+                        <MuiMaterial.Unstable_Grid2 container spacing={2}>
 
-                        <Table 
-                            title={this.state.context} 
-                            items={getAccounts()}
-                            handleAccountSelect={handleAccountSelect}
-                        />
+                            <MuiMaterial.Unstable_Grid2 xs={this.state.gridPrimary}>
+                            
+                                <Table 
+                                    title={this.state.context} 
+                                    items={getAccounts()}
+                                    handleAccountSelect={handleAccountSelect}
+                                />
+                            </MuiMaterial.Unstable_Grid2>
 
-                        <MuiMaterial.Card sx={{ mt:3, mb: 3, color: 'text.primary', backgroundColor: 'info.main' }}>
+                            <MuiMaterial.Unstable_Grid2 xs={this.state.gridSecondary}>
+                            
+                                <MuiMaterial.Card>
+                                    <MuiMaterial.CardHeader title={(getAccounts().data).find(x => x.Id == this.state.account).Title} />
+                                    <MuiMaterial.CardContent>
+                                        <MuiMaterial.Unstable_Grid2 container rowSpacing={1} xs={12}>
+                                            <MuiMaterial.Unstable_Grid2 xs={12}>
+                                                <MuiMaterial.TextField size="small" label="Title" value={this.state.selectedAccount.Title}></MuiMaterial.TextField>
+                                            </MuiMaterial.Unstable_Grid2>
+                                            <MuiMaterial.Unstable_Grid2 xs={12}>
+                                                <MuiMaterial.TextField size="small" label="Username"></MuiMaterial.TextField>
+                                            </MuiMaterial.Unstable_Grid2>
+                                            <MuiMaterial.Unstable_Grid2 xs={12}>
+                                                <MuiMaterial.TextField size="small" label="Password"></MuiMaterial.TextField>
+                                            </MuiMaterial.Unstable_Grid2>
+                                            <MuiMaterial.Unstable_Grid2 xs={12}>
+                                                <MuiMaterial.TextField size="small" label="Url"></MuiMaterial.TextField>
+                                            </MuiMaterial.Unstable_Grid2>
+                                            <MuiMaterial.Unstable_Grid2 xs={12}>
+                                                <MuiMaterial.TextField size="small" label="Notes"></MuiMaterial.TextField>
+                                            </MuiMaterial.Unstable_Grid2>
+                                        </MuiMaterial.Unstable_Grid2>
+
+                                    </MuiMaterial.CardContent>
+                                    <MuiMaterial.CardActions>
+                                        <MuiMaterial.Button variant="outlined">Save</MuiMaterial.Button>
+                                        <MuiMaterial.Button variant="outlined">Cancel</MuiMaterial.Button>
+                                    </MuiMaterial.CardActions>
+                                </MuiMaterial.Card>
+
+                            </MuiMaterial.Unstable_Grid2>
+
+                        </MuiMaterial.Unstable_Grid2>
+
+                        {/* <MuiMaterial.Card sx={{ mt:3, mb: 3, color: 'text.primary', backgroundColor: 'info.main' }}>
                             <MuiMaterial.CardHeader title="Lorem Ipsum" />
                             <DrawerHeader />
                             
@@ -120,8 +170,13 @@ class MasterTemplate extends React.Component {
                                     posuere sollicitudin aliquam ultrices sagittis orci a.
                                 </MuiMaterial.Typography>
                             </MuiMaterial.CardContent>
-                        </MuiMaterial.Card>
+                            <MuiMaterial.CardActions>
+                                <MuiMaterial.Button>Save</MuiMaterial.Button>
+                                <MuiMaterial.Button>Cancel</MuiMaterial.Button>
+                            </MuiMaterial.CardActions>
+                        </MuiMaterial.Card> */}
                     </MuiMaterial.CardContent>
+
                 </MuiMaterial.Card>
                 
             </MuiMaterial.Box>

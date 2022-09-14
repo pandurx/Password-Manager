@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 
 // #region script
-const drawerWidth = 240;
+const drawerWidth = 150;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -98,7 +98,7 @@ export default function Navigation(props) {
 
       <AppBar elevation={0} position="fixed" open={open}>
 
-        <MuiMaterial.Toolbar style={{backgroundColor: "gray"}}>
+        <MuiMaterial.Toolbar style={{backgroundColor: "#13265C"}}>
           <MuiMaterial.IconButton
             color="inherit"
             aria-label="open drawer"
@@ -116,16 +116,14 @@ export default function Navigation(props) {
 
       </AppBar>
 
-      <Drawer variant="permanent" open={open} PaperProps={{sx: {backgroundColor:"gray", color: "white"}}}>
+      <Drawer variant="permanent" open={open} PaperProps={{sx: {backgroundColor:"#42517D", color: "#ffffff"}}}>
       
         <DrawerHeader>
-          <MuiMaterial.Button onClick={handleDrawerClose} endIcon={<MuiIcon.ChevronLeft />}> Collapse </MuiMaterial.Button>
-          <MuiMaterial.IconButton onClick={handleDrawerClose}> 
-            {theme.direction === 'rtl' ? <MuiIcon.ChevronRight /> : <MuiIcon.ChevronLeft />}
-          </MuiMaterial.IconButton>
+          <MuiMaterial.Button sx={{color:"inherit"}}  onClick={handleDrawerClose} endIcon={<MuiIcon.ChevronLeft />}> Collapse </MuiMaterial.Button>
+
         </DrawerHeader>
  
-        <MuiMaterial.List>
+        <MuiMaterial.List >
           <BrowserRouter>
             {
               props.menus.map(item => (
@@ -145,14 +143,24 @@ export default function Navigation(props) {
                           justifyContent: 'center',
                         }}>
                           
-                        <MuiIcon.MoveToInbox /> 
+                        <MuiMaterial.Icon sx={{color:"white"}}>{item.icon}</MuiMaterial.Icon> 
                       </MuiMaterial.ListItemIcon>
-                    <MuiMaterial.ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+                    <MuiMaterial.ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0, color:"#ffffff" }} />
                   </MuiMaterial.ListItemButton>
                   </Link>
                 </MuiMaterial.ListItem>
               ))
             }
+            <MuiMaterial.ListItem key="add_new" disablePadding sx={{ display: 'block' }}>
+              <MuiMaterial.ListItemButton onClick={event => props.handleContextChange("add_new")}
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                      }}>
+                <MuiMaterial.Icon sx={{color:"white"}}>add_circle</MuiMaterial.Icon> 
+              </MuiMaterial.ListItemButton>
+            </MuiMaterial.ListItem>
           </BrowserRouter>
         </MuiMaterial.List>
         
