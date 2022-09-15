@@ -34,7 +34,13 @@ class MasterTemplate extends React.Component {
             gridPrimary: 12,
             gridSecondary: 0,
             accounts: getAccounts(),
-            selectedAccount: {}
+            selected: {
+                title: "",
+                username: "",
+                password: "",
+                url: "",
+                notes: ""
+            }
         }
     }
 
@@ -42,19 +48,32 @@ class MasterTemplate extends React.Component {
 
     render() {
         
-        const handleContextChange = contex => {
-            this.setState({context:contex})
+        const handleContextChange = value => {
+            this.setState({context:value})
         }
 
-        const handleAccountSelect = contex => {
-            if (this.state.account == contex) {
-                this.setState({account:null, gridPrimary:12, gridSecondary:0})
+        const handleAccountSelect = value => {
+            let data = this.state.accounts.data;
+            console.log(value)
+            console.log(data.find(x => x.Id == value))
+            
+            if (this.state.account == value) {
+                this.setState({account:null, gridPrimary:12, gridSecondary:0});
             } else {
-                this.setState({account:contex, gridPrimary:7, gridSecondary:5})
+                this.setState({account:value, gridPrimary:7, gridSecondary:5});
+                let item = data.find(x => x.Id == value);
+                this.setState({selected: {
+                    title: item.Title,
+                    username: item.Username,
+                    password: item.Password,
+                    url: item.Url,
+                    notes: "lorem ipsum"
+                } });
             }
-            let item = this.state.accounts.data.find(x => x.Id == this.state.account);
-            this.setState({selectedAccount: item });
+            
         }
+
+
         
 
         const DrawerHeader = MuiMaterial.styled('div')(({ theme }) => ({
@@ -93,23 +112,23 @@ class MasterTemplate extends React.Component {
                             <MuiMaterial.Unstable_Grid2 xs={this.state.gridSecondary}>
                             
                                 <MuiMaterial.Card>
-                                    <MuiMaterial.CardHeader title={(getAccounts().data).find(x => x.Id == this.state.account).Title} />
+                                    <MuiMaterial.CardHeader title={this.state.selected.Title} />
                                     <MuiMaterial.CardContent>
-                                        <MuiMaterial.Unstable_Grid2 container rowSpacing={1} xs={12}>
-                                            <MuiMaterial.Unstable_Grid2 xs={12}>
-                                                <MuiMaterial.TextField size="small" label="Title" value={this.state.selectedAccount.Title}></MuiMaterial.TextField>
+                                        <MuiMaterial.Unstable_Grid2 container>
+                                            <MuiMaterial.Unstable_Grid2>
+                                                <MuiMaterial.TextField size="small" id="title" label="Title" value={this.state.selected.title}></MuiMaterial.TextField>
                                             </MuiMaterial.Unstable_Grid2>
-                                            <MuiMaterial.Unstable_Grid2 xs={12}>
-                                                <MuiMaterial.TextField size="small" label="Username"></MuiMaterial.TextField>
+                                            <MuiMaterial.Unstable_Grid2 >
+                                                <MuiMaterial.TextField size="small" id="user" label="Username" value={this.state.selected.username}></MuiMaterial.TextField>
                                             </MuiMaterial.Unstable_Grid2>
-                                            <MuiMaterial.Unstable_Grid2 xs={12}>
-                                                <MuiMaterial.TextField size="small" label="Password"></MuiMaterial.TextField>
+                                            <MuiMaterial.Unstable_Grid2 >
+                                                <MuiMaterial.TextField size="small" id="pass" label="Password" value={this.state.selected.password}></MuiMaterial.TextField>
                                             </MuiMaterial.Unstable_Grid2>
-                                            <MuiMaterial.Unstable_Grid2 xs={12}>
-                                                <MuiMaterial.TextField size="small" label="Url"></MuiMaterial.TextField>
+                                            <MuiMaterial.Unstable_Grid2 >
+                                                <MuiMaterial.TextField size="small" id="url" label="Url" value={this.state.selected.url}></MuiMaterial.TextField>
                                             </MuiMaterial.Unstable_Grid2>
-                                            <MuiMaterial.Unstable_Grid2 xs={12}>
-                                                <MuiMaterial.TextField size="small" label="Notes"></MuiMaterial.TextField>
+                                            <MuiMaterial.Unstable_Grid2 >
+                                                <MuiMaterial.TextField size="small" rows={4} multiline id="notes" label="Notes" value={this.state.selected.notes}></MuiMaterial.TextField>
                                             </MuiMaterial.Unstable_Grid2>
                                         </MuiMaterial.Unstable_Grid2>
 
